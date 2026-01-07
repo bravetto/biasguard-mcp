@@ -66,14 +66,14 @@ check_zero() {
         ':(){:|:&};:'          # Fork bomb
         'chmod -R 777 /'
         '> /dev/sda'
-        'curl | sh'            # Pipe to shell
-        'curl | bash'
-        'wget | sh'
-        'wget | bash'
-        'eval \$('             # Eval injection
-        'exec \$('             # Exec injection
-        '\$\(curl'             # Command substitution with curl
-        '\$\(wget'
+        'curl .* \| sh'        # Pipe to shell
+        'curl .* \| bash'
+        'wget .* \| sh'
+        'wget .* \| bash'
+        'eval \$\('            # Eval injection
+        'exec \$\('            # Exec injection
+        'bash -c.*curl'        # Bash exec curl
+        'sh -c.*curl'          # Shell exec curl
     )
     
     for d in "${CRITICAL[@]}"; do
